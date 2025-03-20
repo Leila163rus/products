@@ -18,7 +18,7 @@ class Orders extends Model
         'status'
     ];
     protected $attributes = [
-      'status' => 'new'
+        'status' => 'new'
     ];
 
     public function products():BelongsTo

@@ -1,7 +1,7 @@
 @extends('orders.layout')
 @section('orders')
 
-<div class="card mt-5">
+<div class="card mt-4">
     <h2 class="card-header">Add New Order</h2>
     <div class="card-body">
         <form action="{{ route('orders.create') }}" method="POST">

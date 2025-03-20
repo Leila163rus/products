@@ -1,7 +1,7 @@
 @extends('orders.layout')
 @section('orders')
 
-<div class="card mt-5">
+<div class="card mt-3">
     <h2 class="card-header">Show order</h2>
     <div class="card-body">
         <div class="row">
@@ -26,12 +26,6 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Quantity:</strong> <br/>
-                        {{ $order->quantity }}
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
                         <strong>Category:</strong> <br/>
                         {{ $category['name'] }}
                     </div>
@@ -48,7 +42,7 @@
                         {{ $order->products->description }}
                     </div>
                 </div>
-                <form action="{{ route('orders.show', $order->id) }}" method="POST">
+                <form action="{{ route('orders.update', $order->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div>
@@ -61,7 +55,22 @@
                             placeholder="product_id"
                             readonly
                             required>
-                    </div>        
+                    </div>  
+                    <div class="mb-1">
+                        <label for="quantity" class="form-label"><strong>Quantity:</strong></label>
+                        <input
+                            type="number"
+                            name="quantity"
+                            class="form-control form-control-sm @error('customer') is-invalid @enderror"
+                            value="{{ $order->quantity }}"
+                            id="quantity"
+                            placeholder="Quantity"
+                            readonly
+                            required>
+                                @error('quantity')
+                                    <div class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                    </div>      
                     <div class="mb-1">
                         <label for="customer" class="form-label"><strong>Customer:</strong></label>
                         <input
